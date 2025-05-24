@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update ] # destroy ]
+  before_action :authorize_user, only: %i[ edit update ]
 
   # GET /users or /users.json
   def index
@@ -61,6 +62,11 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params.expect(:id))
+    end
+
+    # Check user authorization
+    def authorize_user
+      redirect_to root_path, alert: "You are not authorized to access this page" unless @user == current_user
     end
 
     # Only allow a list of trusted parameters through.
