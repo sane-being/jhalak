@@ -16,6 +16,7 @@ class UsersTest < ApplicationSystemTestCase
 
   #   fill_in "Bio", with: @user.bio
   #   fill_in "Website", with: @user.website
+  #   fill_in "Username", with: @user.username
   #   click_on "Create User"
 
   #   assert_text "User was successfully created"
@@ -28,6 +29,7 @@ class UsersTest < ApplicationSystemTestCase
 
     fill_in "Bio", with: @user.bio
     fill_in "Website", with: @user.website
+    fill_in "Username", with: @user.username
     click_on "Update User"
 
     assert_text "User was successfully updated"

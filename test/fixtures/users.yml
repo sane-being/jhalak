@@ -3,7 +3,9 @@
 one:
   bio: MyString
   website: MyString
+  username: MyString
 
 two:
   bio: MyString
   website: MyString
+  username: MyString
