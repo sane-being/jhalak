@@ -1,0 +1,10 @@
+<% if current_user && (user != current_user) %>
+  <% if follow_request_to(user).nil? %>
+    <%= form_with model: FollowRequest.new do |form| %>
+      <%= form.hidden_field :user_id, value: user.id %>
+      <%= form.submit "Follow" %>
+    <% end %>
+  <% else %>
+    <%= button_to (follow_request_to(user).accepted ? "Unfollow" : "Cancel Request"), follow_request_to(user), method: :delete %>
+  <% end %>
+<% end %>

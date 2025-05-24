@@ -23,18 +23,8 @@
   </head>
 
   <body>
-    <p><%= link_to "Home", root_path %></p>
-    <% if user_signed_in? %>
-      <p><%= button_to "Sign out", destroy_user_session_path, method: :delete %></p>
-      <p><%= link_to "Account Settings", edit_user_registration_path %></p>
-      <p><%= link_to "Profile", user_path(current_user) %></p>
-    <% else %>
-      <p><%= link_to "Sign in", new_user_session_path %></p>
-      <p><%= link_to "Sign up", new_user_registration_path %></p>
-    <% end %>
-
-    <p class="notice" style="color: green;"><%= notice %></p>
-    <p class="alert" style="color: red;"><%= alert %></p>
+    <%= render "shared/header" %>
+    <%= render "shared/notice" %>
     <%= yield %>
   </body>
 </html>
