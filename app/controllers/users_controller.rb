@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update ] # destroy ]
+  before_action :set_user, only: %i[ show edit update ]
   before_action :authorize_user, only: %i[ edit update ]
 
   # GET /users or /users.json
@@ -17,14 +17,10 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      redirect_to @user, notice: "User was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -36,7 +32,9 @@ class UsersController < ApplicationController
 
     # Check user authorization
     def authorize_user
-      redirect_to root_path, alert: "You are not authorized to access this page" unless @user == current_user
+      unless @user == current_user
+        redirect_to root_path, alert: "You are not authorized to access this page"
+      end
     end
 
     # Only allow a list of trusted parameters through.
