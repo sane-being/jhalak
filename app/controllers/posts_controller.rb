@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :check_user_authorization, only: %i[ edit update destroy ]
 
   # GET /posts or /posts.json
   def index
@@ -22,6 +23,7 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user = current_user
 
     respond_to do |format|
       if @post.save
@@ -63,8 +65,15 @@ class PostsController < ApplicationController
       @post = Post.find(params.expect(:id))
     end
 
+    # authorize user: only post author can edit, create & destroy the post
+    def check_user_authorization
+      unless @post.user == current_user
+        redirect_to root_path, alert: "You are not authorized to access this page"
+      end
+    end
+
     # Only allow a list of trusted parameters through.
     def post_params
-      params.expect(post: [ :content, :user_id ])
+      params.expect(post: [ :content ])
     end
 end

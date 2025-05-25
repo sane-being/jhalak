@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update ]
-  before_action :authorize_user, only: %i[ edit update ]
+  before_action :check_user_authorization, only: %i[ edit update ]
 
   # GET /users or /users.json
   def index
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     end
 
     # Check user authorization
-    def authorize_user
+    def check_user_authorization
       unless @user == current_user
         redirect_to root_path, alert: "You are not authorized to access this page"
       end
