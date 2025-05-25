@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
-  before_action :check_user_authorization, only: %i[ edit update destroy ]
+  before_action :check_user_authorization, only: %i[ show edit update destroy ]
 
   # GET /posts or /posts.json
   def index
@@ -65,9 +65,13 @@ class PostsController < ApplicationController
       @post = Post.find(params.expect(:id))
     end
 
-    # authorize user: only post author can edit, create & destroy the post
+    # check if user is authorized :
+    # only post author user can #edit, #create & #destroy
+    # only post author or his follower can #show
     def check_user_authorization
-      unless @post.user == current_user
+      condition = @post.user == current_user
+      condition = (condition || (@post.user.followers.include? current_user)) if action_name == "show"
+      unless condition
         redirect_to root_path, alert: "You are not authorized to access this page"
       end
     end
