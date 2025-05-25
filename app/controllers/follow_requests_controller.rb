@@ -3,14 +3,14 @@ class FollowRequestsController < ApplicationController
 
   # GET /follow_requests or /follow_requests.json
   def index
-    @follow_requests = FollowRequest.where(user_id: current_user.id, accepted: false).all
-    @accepted_follow_requests = FollowRequest.where(user_id: current_user.id, accepted: true).all
+    @follow_requests = current_user.follow_requests.where(accepted: false)
+    @accepted_follow_requests = current_user.accepted_follow_requests
   end
 
   # POST /follow_requests or /follow_requests.json
   def create
     @follow_request = FollowRequest.new(params.expect(follow_request: [ :user_id ]))
-    @follow_request.follower_id = current_user.id
+    @follow_request.follower = current_user
     if @follow_request.save
       redirect_back(fallback_location: root_path, notice: "Follow request was successfully sent.")
     else
