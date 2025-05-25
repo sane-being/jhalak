@@ -5,10 +5,16 @@
 <div id="follow_requests">
   <% @follow_requests.each do |follow_request| %>
     <%= render follow_request %>
-    <p>
-      <%= link_to "Show this follow request", follow_request %>
-    </p>
+    <%= render "accept_request_button", follow_request: follow_request %>
   <% end %>
 </div>
 
-<%= link_to "New follow request", new_follow_request_path %>
+<h1>Followers</h1>
+
+<div">
+  <% @accepted_follow_requests.each do |follow_request| %>
+    <%= render follow_request.follower %>
+    <p><%= link_to "Show this user", follow_request.follower %></p>
+    <%= render "accept_request_button", follow_request: follow_request %>
+  <% end %>
+</div>

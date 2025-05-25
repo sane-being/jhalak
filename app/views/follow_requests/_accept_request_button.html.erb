@@ -1,0 +1,12 @@
+<% unless follow_request.accepted %>
+    <div>
+      <%= form_with(model: follow_request) do |form| %>
+        <%= form.hidden_field :accepted, value: true %>
+        <%= form.submit "Confirm" %>
+      <% end %>
+    </div>
+<% end %>
+
+<div>
+  <%= button_to (follow_request.accepted ? "Remove" : "Delete" ), follow_request, method: :delete %>
+</div>
