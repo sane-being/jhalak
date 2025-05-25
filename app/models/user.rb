@@ -9,4 +9,5 @@ class User < ApplicationRecord
 
   # associations
   has_many :follow_requests
+  has_many :posts
 end
