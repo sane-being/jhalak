@@ -1,10 +1,6 @@
 class PostPolicy < ApplicationPolicy
   # See https://actionpolicy.evilmartians.io/#/writing_policies
-  #
-  # def index?
-  #   true
-  # end
-  #
+  
   def show?
     (user.id == record.user_id) || (record.user.followers.include? user)
   end
@@ -23,9 +19,8 @@ class PostPolicy < ApplicationPolicy
 
   # Scoping
   # See https://actionpolicy.evilmartians.io/#/scoping
-  #
-  # relation_scope do |relation|
-  #   next relation if user.admin?
-  #   relation.where(user: user)
-  # end
+
+  relation_scope do |relation|
+    relation.where(user_id: user.following.ids + [user.id])
+  end
 end
