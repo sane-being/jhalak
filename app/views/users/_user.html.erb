@@ -1,21 +1,5 @@
 <div id="<%= dom_id user %>">
-  <p>
-    <strong>Bio:</strong>
-    <%= user.bio %>
-  </p>
-
-  <p>
-    <strong>Website:</strong>
-    <%= user.website %>
-  </p>
-
-  <p>
-    <strong>Username:</strong>
-    <%= user.username %>
-  </p>
-
-  <p>
-    <strong>Username:</strong>
-    <%= user.email %>
-  </p>
+  <h3>
+    <%= link_to user.username, user %>
+  </h3>
 </div>

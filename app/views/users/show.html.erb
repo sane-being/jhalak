@@ -1,9 +1,29 @@
-<%= render @user %>
+<h1>Profile</h1>
+  <div>
+    <% if allowed_to?(:edit?, @user) %>
+      <%= link_to "Edit Profile", edit_user_path(@user) %>
+    <% else %>
+      <%= render "follow_button", user: @user %>
+    <% end %>
+  </div>
+  
+  <p>
+    <strong>Username:</strong>
+    <%= @user.username %>
+  </p>
 
-<div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
-  <%= render "follow_button", user: @user %>
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
 
-  <%#= button_to "Destroy this user", @user, method: :delete %>
-</div>
+
+  <p>
+    <strong>Website:</strong>
+    <%= @user.website %>
+  </p>
+
+  <p>
+    <strong>Bio:</strong>
+    <%= @user.bio %>
+  </p>

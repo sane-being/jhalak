@@ -1,12 +1,14 @@
-    <p><%= link_to "Home (Posts)", root_path %></p>
-    <p><%= link_to "Users", users_path %></p>
-    <p><%= link_to "Follow Requests", follow_requests_path %></p>
 
-    <% if user_signed_in? %>
-      <p><%= button_to "Sign out", destroy_user_session_path, method: :delete %></p>
-      <p><%= link_to "Account Settings", edit_user_registration_path %></p>
-      <p><%= link_to "Profile", user_path(current_user) %></p>
-    <% else %>
-      <p><%= link_to "Sign in", new_user_session_path %></p>
-      <p><%= link_to "Sign up", new_user_registration_path %></p>
-    <% end %>
+<% if user_signed_in? %>
+  <%= link_to "Home (Posts)", root_path %> | 
+  <%= link_to "New post", new_post_path %> | 
+  <%= link_to "Users", users_path %> | 
+  <%= link_to "Follow Requests", follow_requests_path %> | 
+  <%= link_to "Profile", user_path(current_user) %> |
+  <%= link_to "Account Settings", edit_user_registration_path %> | 
+  <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+<% else %>
+  <%= link_to "Sign in", new_user_session_path %> |
+  <%= link_to "Sign up", new_user_registration_path %>
+<% end %>
+

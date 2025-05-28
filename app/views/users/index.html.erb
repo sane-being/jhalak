@@ -3,9 +3,12 @@
 <h1>Users</h1>
 
 <div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p><%= link_to "Show this user", user %></p>
-    <%= render "follow_button", user: user %>
-  <% end %>
+  <ul>
+    <% @users.each do |user| %>
+      <li>
+        <%= render user %>
+        <%= render "follow_button", user: user %>
+      </li>
+    <% end %>
+  </ul>
 </div>

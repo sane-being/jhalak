@@ -1,12 +1,11 @@
-<div id="<%= dom_id post %>">
+<div id="<%= dom_id post %>">  
+  <p>
+    <strong>User:</strong>
+    <%= link_to post.user.username, post.user %>
+  </p>
+
   <p>
     <strong>Content:</strong>
     <%= post.content %>
   </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= post.user.email %>
-  </p>
-
 </div>

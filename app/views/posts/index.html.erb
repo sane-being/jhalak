@@ -3,12 +3,13 @@
 <h1>Posts</h1>
 
 <div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
-  <% end %>
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <h3><%= link_to "Post #{post.id}", post %></h3>
+        <%= render post %>
+      </li>
+    <% end %>
+  </ul>
 </div>
 
-<%= link_to "New post", new_post_path %>

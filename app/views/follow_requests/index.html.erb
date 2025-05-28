@@ -12,9 +12,12 @@
 <h1>Followers</h1>
 
 <div">
-  <% @accepted_follow_requests.each do |follow_request| %>
-    <%= render follow_request.follower %>
-    <p><%= link_to "Show this user", follow_request.follower %></p>
-    <%= render "accept_request_button", follow_request: follow_request %>
-  <% end %>
+  <ul>
+    <% @accepted_follow_requests.each do |follow_request| %>
+      <li>
+        <%= render follow_request.follower %>
+        <%= render "accept_request_button", follow_request: follow_request %>
+      </li>
+    <% end %>
+  </ul>
 </div>
