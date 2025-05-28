@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update ]
+  verify_authorized except: %i[ index show ]
 
   # GET /users or /users.json
   def index
