@@ -1,70 +1,26 @@
 class LikesController < ApplicationController
-  before_action :set_like, only: %i[ show edit update destroy ]
-
   # GET /likes or /likes.json
   def index
-    @likes = Like.all
-  end
-
-  # GET /likes/1 or /likes/1.json
-  def show
-  end
-
-  # GET /likes/new
-  def new
-    @like = Like.new
-  end
-
-  # GET /likes/1/edit
-  def edit
+    @post = Post.find(params.expect(:post_id))
+    @likes = @post.likes
   end
 
   # POST /likes or /likes.json
   def create
-    @like = Like.new(like_params)
+    @like = Like.new(user: current_user, post_id: params.expect(:post_id))
 
-    respond_to do |format|
-      if @like.save
-        format.html { redirect_to @like, notice: "Like was successfully created." }
-        format.json { render :show, status: :created, location: @like }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @like.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /likes/1 or /likes/1.json
-  def update
-    respond_to do |format|
-      if @like.update(like_params)
-        format.html { redirect_to @like, notice: "Like was successfully updated." }
-        format.json { render :show, status: :ok, location: @like }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @like.errors, status: :unprocessable_entity }
-      end
+    if @like.save
+      redirect_back(fallback_location: root_path, notice: "Post was liked")
+    else
+      redirect_back(fallback_location: root_path, alert: "Post could not be liked")
     end
   end
 
   # DELETE /likes/1 or /likes/1.json
   def destroy
+    @like = Like.find(params.expect(:id))
     @like.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to likes_path, status: :see_other, notice: "Like was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_back(fallback_location: root_path, notice: "Like removed from the post")
   end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_like
-      @like = Like.find(params.expect(:id))
-    end
-
-    # Only allow a list of trusted parameters through.
-    def like_params
-      params.expect(like: [ :user_id, :post_id ])
-    end
 end

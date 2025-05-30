@@ -1,0 +1,9 @@
+<div>
+  <% if like(post).nil? %>
+    <%= form_with(model: Like.new, url: post_likes_path(post)) do |form| %>
+      <%= form.submit "Like" %>
+    <% end %>
+  <% else %>
+    <%= button_to "Liked", [post, like(post)], method: :delete %>
+  <% end %>
+</div>

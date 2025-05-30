@@ -12,25 +12,26 @@ class User < ApplicationRecord
     dependent: :destroy
   has_many :accepted_follow_requests,
     -> { where accepted: true },
-    foreign_key: :user_id, 
-    class_name: "FollowRequest", 
+    foreign_key: :user_id,
+    class_name: "FollowRequest",
     dependent: :destroy
   has_many :followers,
     through: :accepted_follow_requests,
     source: :follower
 
-  has_many :sent_follow_requests, 
-    foreign_key: :follower_id, 
-    class_name: "FollowRequest", 
+  has_many :sent_follow_requests,
+    foreign_key: :follower_id,
+    class_name: "FollowRequest",
     dependent: :destroy
   has_many :accepted_sent_follow_requests,
     -> { where accepted: true },
-    foreign_key: :follower_id, 
-    class_name: "FollowRequest", 
+    foreign_key: :follower_id,
+    class_name: "FollowRequest",
     dependent: :destroy
   has_many :following,
-    through: :accepted_sent_follow_requests, 
+    through: :accepted_sent_follow_requests,
     source: :user
 
   has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
 end
