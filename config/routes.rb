@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :likes
-  resources :posts
+  resources :posts do
+    resources :likes
+  end
   resources :follow_requests
   devise_for :users, controllers: {
     registrations: "users/registrations"
