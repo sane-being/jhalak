@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
+  resources :likes
   resources :posts
   resources :follow_requests
   devise_for :users, controllers: {
-    registrations: 'users/registrations'
+    registrations: "users/registrations"
   }
-  resources :users, only: [:index, :show, :edit, :update]
+  resources :users, only: [ :index, :show, :edit, :update ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
