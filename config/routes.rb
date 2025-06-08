@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :comments
   resources :posts do
     resources :likes
+    resources :comments
   end
   resources :follow_requests
   devise_for :users, controllers: {
