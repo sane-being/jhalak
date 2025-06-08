@@ -8,7 +8,7 @@
       <li>
         <h3><%= link_to "Post #{post.id}", post %></h3>
         <%= render post %>
-        <%= render "like_button", post: post %>
+        <%= render "likes/like_button", post: post %>
         <%= link_to "Liked by:", post_likes_path(post) %>
       </li>
     <% end %>
