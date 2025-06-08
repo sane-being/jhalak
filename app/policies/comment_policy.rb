@@ -1,9 +1,5 @@
-class LikePolicy < ApplicationPolicy
+class CommentPolicy < ApplicationPolicy
   # See https://actionpolicy.evilmartians.io/#/writing_policies
-  #
-  def index?
-    allowed_to?(:show?, record.last.post)
-  end
 
   def create?
     allowed_to?(:show?, record.post)
