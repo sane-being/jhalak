@@ -1,8 +1,0 @@
-<%= render "comment", comment: @comment %>
-
-<div>
-  <%= link_to "Edit this comment", edit_post_comment_path(@post, @comment) %> |
-  <%= link_to "Back to comments",  post_comments_path(@post)  %>
-
-  <%= button_to "Destroy this comment", post_comment_path(@post, @comment), method: :delete %>
-</div>

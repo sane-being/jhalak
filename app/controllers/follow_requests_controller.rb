@@ -24,7 +24,6 @@ class FollowRequestsController < ApplicationController
     unless @follow_request.user == current_user
       redirect_to root_path, alert: "You are not authorized to update/destroy this follow request"
     end
-    
     if @follow_request.update(params.expect(follow_request: [ :accepted ]))
       redirect_back(fallback_location: root_path, notice: "Follow request was accepted.")
     else
@@ -35,10 +34,9 @@ class FollowRequestsController < ApplicationController
   # DELETE /follow_requests/1 or /follow_requests/1.json
   def destroy
     # Check user authorization
-    unless [@follow_request.follower, @follow_request.user].include? current_user
+    unless [ @follow_request.follower, @follow_request.user ].include? current_user
       redirect_to root_path, alert: "You are not authorized to update/destroy this follow request"
     end
-    
     @follow_request.destroy!
     redirect_back(fallback_location: root_path, notice: "Follow request was successfully deleted.")
   end

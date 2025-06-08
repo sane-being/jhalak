@@ -5,10 +5,5 @@
 <div id="comments">
   <% @comments.each do |comment| %>
     <%= render comment %>
-    <p>
-      <%= link_to "Show this comment",  post_comment_path(@post, comment) %>
-    </p>
   <% end %>
 </div>
-
-<%= link_to "New comment",  new_post_comment_path(@post)  %>

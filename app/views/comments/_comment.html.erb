@@ -8,4 +8,8 @@
     <strong>Content:</strong>
     <%= comment.content %>
   </p>
+
+  <% if comment.user == current_user %>
+    <p><%= button_to "Delete comment", [comment.post, comment], method: :delete %></p>
+  <% end %>
 </div>

@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   resources :posts do
-    resources :likes
-    resources :comments
+    resources :likes, only: [ :index, :create, :destroy ]
+    resources :comments, only: [ :create, :destroy ]
   end
-  resources :follow_requests
+  resources :follow_requests, only: [ :index, :create, :update, :destroy ]
+
   devise_for :users, controllers: {
     registrations: "users/registrations"
   }
