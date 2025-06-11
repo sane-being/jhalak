@@ -2,21 +2,17 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update ]
   verify_authorized except: %i[ index show ]
 
-  # GET /users or /users.json
   def index
     @users = User.all
   end
 
-  # GET /users/1 or /users/1.json
   def show
   end
 
-  # GET /users/1/edit
   def edit
     authorize! @user
   end
 
-  # PATCH/PUT /users/1 or /users/1.json
   def update
     authorize! @user
     if @user.update(user_params)

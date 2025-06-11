@@ -1,13 +1,11 @@
 class FollowRequestsController < ApplicationController
   before_action :set_follow_request, only: %i[ update destroy ]
 
-  # GET /follow_requests or /follow_requests.json
   def index
     @follow_requests = current_user.follow_requests.where(accepted: false)
     @accepted_follow_requests = current_user.accepted_follow_requests
   end
 
-  # POST /follow_requests or /follow_requests.json
   def create
     @follow_request = FollowRequest.new(params.expect(follow_request: [ :user_id ]))
     @follow_request.follower = current_user
@@ -18,7 +16,6 @@ class FollowRequestsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /follow_requests/1 or /follow_requests/1.json
   def update
     # Check user authorization
     unless @follow_request.user == current_user
@@ -31,7 +28,6 @@ class FollowRequestsController < ApplicationController
     end
   end
 
-  # DELETE /follow_requests/1 or /follow_requests/1.json
   def destroy
     # Check user authorization
     unless [ @follow_request.follower, @follow_request.user ].include? current_user

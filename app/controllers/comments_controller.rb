@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params.expect(:id))
-    # authorize! @comment
+    authorize! @comment
     @comment.destroy!
     redirect_to post_comments_path(@post), status: :see_other, notice: "Comment was successfully destroyed."
   end
