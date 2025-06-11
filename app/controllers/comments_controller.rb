@@ -1,9 +1,11 @@
 class CommentsController < ApplicationController
   before_action :set_post
+  verify_authorized
 
   def create
     @comment = @post.comments.new(comment_params)
     @comment.user = current_user
+    authorize! @comment
 
     if @comment.save
       redirect_to post_comment_path(@post, @comment), notice: "Comment was successfully created."

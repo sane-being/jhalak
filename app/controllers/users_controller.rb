@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_and_authorize_user, only: %i[ show edit update ]
-  verify_authorized except: %i[ index show ]
+  verify_authorized
 
   def index
     @users = authorized(User.all)
+    authorize!
   end
 
   def show

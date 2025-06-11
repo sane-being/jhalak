@@ -1,4 +1,6 @@
 class LikesController < ApplicationController
+  verify_authorized
+
   def index
     @post = Post.find(params.expect(:post_id))
     @likes = @post.likes

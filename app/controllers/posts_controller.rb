@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
   before_action :set_and_authorize_post, only: %i[ show edit update destroy ]
-  verify_authorized except: %i[ index new create ]
+  verify_authorized
 
   def index
     @posts = authorized(Post.all)
+    authorize!
   end
 
   def show
@@ -11,15 +12,16 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    @post = current_user.posts.new
+    authorize! @post
   end
 
   def edit
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.user = current_user
+    @post = current_user.posts.new(post_params)
+    authorize! @post
 
     if @post.save
       redirect_to @post, notice: "Post was successfully created."

@@ -1,14 +1,17 @@
 class FollowRequestsController < ApplicationController
   before_action :set_and_authorize_follow_request, only: %i[ update destroy ]
+  verify_authorized
 
   def index
     @follow_requests = authorized(FollowRequest.where(accepted: false))
     @accepted_follow_requests = authorized(FollowRequest.where(accepted: true))
+    authorize!
   end
 
   def create
     @follow_request = FollowRequest.new(params.expect(follow_request: [ :user_id ]))
     @follow_request.follower = current_user
+    authorize! @follow_request
     if @follow_request.save
       redirect_back(fallback_location: root_path, notice: "Follow request was successfully sent.")
     else

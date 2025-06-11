@@ -1,6 +1,14 @@
 class FollowRequestPolicy < ApplicationPolicy
   # See https://actionpolicy.evilmartians.io/#/writing_policies
 
+  def index?
+    true
+  end
+
+  def create?
+    record.follower == user
+  end
+
   def update?
     record.user == user
   end
@@ -10,6 +18,6 @@ class FollowRequestPolicy < ApplicationPolicy
   end
 
   relation_scope do |relation|
-    relation.where(user: user).or(relation.where(follower: user))
+    relation.where(user: user)
   end
 end
