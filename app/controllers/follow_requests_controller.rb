@@ -1,9 +1,9 @@
 class FollowRequestsController < ApplicationController
-  before_action :set_follow_request, only: %i[ update destroy ]
+  before_action :set_and_authorize_follow_request, only: %i[ update destroy ]
 
   def index
-    @follow_requests = current_user.follow_requests.where(accepted: false)
-    @accepted_follow_requests = current_user.accepted_follow_requests
+    @follow_requests = authorized(FollowRequest.where(accepted: false))
+    @accepted_follow_requests = authorized(FollowRequest.where(accepted: true))
   end
 
   def create
@@ -17,10 +17,6 @@ class FollowRequestsController < ApplicationController
   end
 
   def update
-    # Check user authorization
-    unless @follow_request.user == current_user
-      redirect_to root_path, alert: "You are not authorized to update/destroy this follow request"
-    end
     if @follow_request.update(params.expect(follow_request: [ :accepted ]))
       redirect_back(fallback_location: root_path, notice: "Follow request was accepted.")
     else
@@ -29,17 +25,14 @@ class FollowRequestsController < ApplicationController
   end
 
   def destroy
-    # Check user authorization
-    unless [ @follow_request.follower, @follow_request.user ].include? current_user
-      redirect_to root_path, alert: "You are not authorized to update/destroy this follow request"
-    end
     @follow_request.destroy!
     redirect_back(fallback_location: root_path, notice: "Follow request was successfully deleted.")
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_follow_request
+    def set_and_authorize_follow_request
       @follow_request = FollowRequest.find(params.expect(:id))
+      authorize! @follow_request
     end
 end

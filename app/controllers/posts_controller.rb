@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_and_authorize_post, only: %i[ show edit update destroy ]
   verify_authorized except: %i[ index new create ]
 
   def index
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_post
+    def set_and_authorize_post
       @post = Post.find(params.expect(:id))
       authorize! @post
     end
