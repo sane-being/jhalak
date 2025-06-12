@@ -1,7 +1,9 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+ruby '~> 3.4.4'
 gem "rails", "~> 8.0.2"
+
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use postgresql as the database for Active Record
@@ -65,3 +67,7 @@ end
 gem "devise", "~> 4.9"
 
 gem "action_policy", "~> 0.7.5"
+
+gem "tailwindcss-ruby", "~> 4.1"
+
+gem "tailwindcss-rails", "~> 4.2"
