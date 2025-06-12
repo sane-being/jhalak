@@ -22,12 +22,10 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <header>
-      <%= render "shared/header" %>
-    </header>
+  <body class='grid grid-cols-2' >
+    <%= render "shared/header" %>
     <%= render "shared/notice" %>
-    <main>
+    <main class="col-start-2 col-end-3 row-start-1 row-end-2">
       <%= yield %>
     </main>
   </body>
