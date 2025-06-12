@@ -3,11 +3,12 @@ class UsersController < ApplicationController
   verify_authorized
 
   def index
-    @users = authorized(User.all)
+    @users = authorized_scope(User.all)
     authorize!
   end
 
   def show
+    @posts = authorized_scope(@user.posts)
   end
 
   def edit

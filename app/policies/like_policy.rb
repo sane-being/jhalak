@@ -12,4 +12,9 @@ class LikePolicy < ApplicationPolicy
   def destroy?
     allowed_to?(:show?, record.post) && (record.user == user)
   end
+
+  relation_scope do |relation|
+    posts = authorized_scope(Post.all)
+    relation.where(post: posts)
+  end
 end

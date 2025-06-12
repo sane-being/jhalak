@@ -3,12 +3,12 @@ class PostsController < ApplicationController
   verify_authorized
 
   def index
-    @posts = authorized(Post.all)
+    @posts = authorized_scope(Post.all)
     authorize!
   end
 
   def show
-    @comments = @post.comments
+    @comments = authorized_scope(@post.comments)
   end
 
   def new

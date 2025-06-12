@@ -3,8 +3,8 @@ class FollowRequestsController < ApplicationController
   verify_authorized
 
   def index
-    @follow_requests = authorized(FollowRequest.where(accepted: false))
-    @accepted_follow_requests = authorized(FollowRequest.where(accepted: true))
+    @follow_requests = authorized_scope(FollowRequest.where(accepted: false))
+    @accepted_follow_requests = authorized_scope(FollowRequest.where(accepted: true))
     authorize!
   end
 

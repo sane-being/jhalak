@@ -15,7 +15,8 @@
   <ul>
     <% @accepted_follow_requests.each do |follow_request| %>
       <li>
-        <%= render follow_request.follower %>
+        <%= render "users/profile_picture", size: 'thumb', user: follow_request.follower %>
+        <%= link_to follow_request.follower.username, follow_request.follower %>
         <%= render "accept_request_button", follow_request: follow_request %>
       </li>
     <% end %>

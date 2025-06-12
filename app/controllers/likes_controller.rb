@@ -3,7 +3,7 @@ class LikesController < ApplicationController
 
   def index
     @post = Post.find(params.expect(:post_id))
-    @likes = @post.likes
+    @likes = authorized_scope(@post.likes)
     authorize! @likes
   end
 

@@ -1,4 +1,7 @@
 <h3>Post <%= @post.id %></h3>
+<%= render "users/profile_picture", size: 'thumb', user: @post.user %>
+<%= link_to @post.user.username, @post.user %>
+
 <% if allowed_to?(:edit?, @post) %>
   <div>
     <%= link_to "Edit this post", edit_post_path(@post) %>

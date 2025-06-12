@@ -6,7 +6,8 @@
   <ul>
     <% @users.each do |user| %>
       <li>
-        <%= render user %>
+        <%= render "profile_picture", size: 'thumb', user: user %>
+        <h3><%= link_to user.username, user %></h3>
         <%= render "follow_requests/follow_button", user: user %>
       </li>
     <% end %>
