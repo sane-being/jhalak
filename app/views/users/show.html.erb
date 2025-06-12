@@ -1,9 +1,11 @@
 <h1>Profile</h1>
+  <%= render "profile_picture", size: "small", user: @user %>
+  
   <div>
     <% if allowed_to?(:edit?, @user) %>
       <%= link_to "Edit Profile", edit_user_path(@user) %>
     <% else %>
-      <%= render "follow_button", user: @user %>
+      <%= render "follow_requests/follow_button", user: @user %>
     <% end %>
   </div>
   

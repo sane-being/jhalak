@@ -34,4 +34,9 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_one_attached :profile_picture do |attachable|
+    attachable.variant :thumb, resize_to_fill: [ 50, 50 ]
+    attachable.variant :small, resize_to_limit: [ 100, 100 ]
+    attachable.variant :medium, resize_to_limit: [ 300, 300 ]
+  end
 end

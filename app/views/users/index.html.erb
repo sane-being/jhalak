@@ -7,7 +7,7 @@
     <% @users.each do |user| %>
       <li>
         <%= render user %>
-        <%= render "follow_button", user: user %>
+        <%= render "follow_requests/follow_button", user: user %>
       </li>
     <% end %>
   </ul>

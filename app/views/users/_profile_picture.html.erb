@@ -1,0 +1,14 @@
+<!-- variable to be passed & its options- 
+size: 
+  'thumb'(50*50), 
+  'small'(100*100), 
+  'medium'(300*300) 
+-->
+
+<div>
+  <% if user.profile_picture.present? %>
+    <%= image_tag user.profile_picture&.variant(size.to_sym), class: size %>
+  <% else %>
+    <%= image_tag('stock_profile_picture.svg', class: size) %>
+  <% end %>
+</div>
