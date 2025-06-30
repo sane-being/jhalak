@@ -1,8 +1,7 @@
-<%= form_with(model: post) do |form| %>
+<%= form_with(model: post, class:"flex flex-col gap-8") do |form| %>
   <% if post.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
       <ul>
         <% post.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,22 +9,14 @@
       </ul>
     </div>
   <% end %>
-
   <% post.images.each do |image| %>
     <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
   <% end %>
-
   <div>
-    <%= form.label :images, style: "display: block" %>
-    <%= form.file_field :images, multiple: true, direct_upload: true %>
+    <%= form.file_field :images, multiple: true, direct_upload: true, class:"cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
   </div>
-
   <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.textarea :content %>
+    <%= form.textarea :content, placeholder:"Write caption...", class:"w-full aria-disabled:cursor-not-allowed outline-none focus:outline-none text-stone-800 dark:text-white placeholder:text-stone-600/60 transition-all ease-in disabled:opacity-50 disabled:pointer-events-none select-none duration-100 peer" %>
   </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= form.submit "Share", class:"cursor-pointer font-bold text-sky-500 hover:text-sky-700" %>
 <% end %>
