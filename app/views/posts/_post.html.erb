@@ -1,7 +1,11 @@
 <div id="<%= dom_id post %>" class="flex flex-col gap-4" >
+  <div class="flex items-center gap-3">
+    <%= render "users/profile_picture", size: 'thumb', user: post.user %>
+    <%= link_to post.user.username, post.user, class:"font-bold" %>
+  </div>
   <% if post.images.present? %>
     <% post.images.each do |image| %>
-      <%= image_tag image %>
+      <%= link_to (image_tag image), post %>
     <% end %>
   <% end %>
   <div class="flex items-center gap-3">
@@ -9,7 +13,7 @@
     <%= link_to "Liked by:", post_likes_path(post) %>
   </div>
   <p>
-    <strong>Content:</strong>
+    <strong><%= post.user.username %></strong>
     <%= post.content %>
   </p>
 </div>

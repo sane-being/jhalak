@@ -6,4 +6,4 @@ size:
 -->
 
 <% dp_url = user.profile_picture.present? ? user.profile_picture&.variant(size.to_sym) : 'stock_profile_picture.svg' %>
-<%= image_tag dp_url, class: "#{size} border-1 border-gray-300 rounded-full object-cover" %>
+<%= link_to (image_tag dp_url, class: "#{size} border-1 border-gray-300 rounded-full object-cover"), user %>
