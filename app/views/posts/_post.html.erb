@@ -1,7 +1,18 @@
 <div id="<%= dom_id post %>" class="flex flex-col gap-4" >
-  <div class="flex items-center gap-3">
-    <%= render "users/profile_picture", size: 'thumb', user: post.user %>
-    <%= link_to post.user.username, post.user, class:"font-bold" %>
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <%= render "users/profile_picture", size: 'thumb', user: post.user %>
+      <%= link_to post.user.username, post.user, class:"font-bold" %>
+    </div>
+    <% if allowed_to?(:edit?, post)  %>
+      <details class="relative inline-block text-left">
+        <summary class="list-none p-2 rounded-full hover:text-gray-500 cursor-pointer">•••</summary>
+        <div class="absolute right-0 mt-2 w-30 bg-white border border-gray-200 rounded-md shadow-lg z-10 px-4 py-3 flex flex-col gap-1.5">
+          <%= link_to "Edit", edit_post_path(post) %>
+          <%= button_to "Delete", post, method: :delete, class:"cursor-pointer text-red-700" %>
+        </div>
+      </details>
+    <% end %>
   </div>
   <% if post.images.present? %>
     <% post.images.each do |image| %>

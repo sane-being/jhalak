@@ -1,17 +1,4 @@
-<h3>Post <%= @post.id %></h3>
-<%= render "users/profile_picture", size: 'thumb', user: @post.user %>
-<%= link_to @post.user.username, @post.user %>
-
-<% if allowed_to?(:edit?, @post) %>
-  <div>
-    <%= link_to "Edit this post", edit_post_path(@post) %>
-    <%= button_to "Destroy this post", @post, method: :delete %>
-  </div>
-<% end %>
-
 <%= render @post %>
-<%= render "likes/like_button", post: @post %>
-<%= link_to "Liked by:", post_likes_path(@post) %>
 
 <h3>Add comment: </h3>
 <%= render "comments/new_comment" %>
