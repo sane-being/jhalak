@@ -6,7 +6,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    allowed_to?(:show?, record.post) && (record.user == user)
+    (record.user == user)
   end
 
   relation_scope do |relation|

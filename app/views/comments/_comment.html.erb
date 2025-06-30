@@ -9,7 +9,7 @@
     <%= comment.content %>
   </p>
 
-  <% if comment.user == current_user %>
+  <% if allowed_to?(:destroy?, comment) %>
     <p><%= button_to "Delete comment", [comment.post, comment], method: :delete %></p>
   <% end %>
 </div>
