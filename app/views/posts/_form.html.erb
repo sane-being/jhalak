@@ -11,6 +11,15 @@
     </div>
   <% end %>
 
+  <% post.images.each do |image| %>
+    <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
+  <% end %>
+
+  <div>
+    <%= form.label :images, style: "display: block" %>
+    <%= form.file_field :images, multiple: true, direct_upload: true %>
+  </div>
+
   <div>
     <%= form.label :content, style: "display: block" %>
     <%= form.textarea :content %>

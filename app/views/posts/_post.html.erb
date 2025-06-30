@@ -1,4 +1,10 @@
 <div id="<%= dom_id post %>"> 
+  <% if post.images.present? %>
+    <% post.images.each do |image| %>
+      <%= image_tag image %>
+    <% end %>
+  <% end %>
+
   <p>
     <strong>Content:</strong>
     <%= post.content %>
