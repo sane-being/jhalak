@@ -22,10 +22,10 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class='grid grid-cols-2' >
+  <body class='flex relative h-screen' >
     <%= render "shared/header" %>
     <%= render "shared/notice" %>
-    <main class="col-start-2 col-end-3 row-start-1 row-end-2">
+    <main class="absolute flex flex-col items-stretch inset-0 mx-auto max-w-[470px] h-screen p-4">
       <%= yield %>
     </main>
   </body>
