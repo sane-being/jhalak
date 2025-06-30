@@ -1,8 +1,5 @@
 <% content_for :title, "Comments" %>
-
-<h1>Comments</h1>
-
-<div id="comments">
+<div id="comments" class="flex flex-col gap-4 py-4">
   <% @comments.each do |comment| %>
     <%= render comment %>
   <% end %>

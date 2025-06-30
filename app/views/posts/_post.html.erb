@@ -16,7 +16,7 @@
   </div>
   <% if post.images.present? %>
     <% post.images.each do |image| %>
-      <%= link_to (image_tag image), post %>
+      <%= link_to (image_tag image, class:"size-full"), post %>
     <% end %>
   <% end %>
   <div class="flex items-center gap-3">
@@ -27,4 +27,5 @@
     <strong><%= post.user.username %></strong>
     <%= post.content %>
   </p>
+  <%= render "comments/new_comment", post: post %>
 </div>

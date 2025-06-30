@@ -1,5 +1,4 @@
-<%= render @post %>
-
-<h3>Add comment: </h3>
-<%= render "comments/new_comment" %>
-<%= render "comments/comments" %>
+<div class="flex flex-col gap-2">
+  <%= render @post %>
+  <%= render "comments/comments" %>
+</div>

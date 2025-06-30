@@ -1,15 +1,15 @@
-<div>
-  <p>
-    <strong>User:</strong>
-    <%= link_to comment.user.username, comment.user %>
-  </p>
-  
-  <p>
-    <strong>Content:</strong>
+<div class="flex justify-between items-center">
+  <div class="flex items-center gap-3 grow">
+    <%= render "users/profile_picture", size: 'thumb', user: comment.user %>
+    <%= link_to comment.user.username, comment.user, class:"font-bold" %>
     <%= comment.content %>
-  </p>
-
+  </div>
   <% if allowed_to?(:destroy?, comment) %>
-    <p><%= button_to "Delete comment", [comment.post, comment], method: :delete %></p>
+    <details class="relative inline-block text-left">
+      <summary class="list-none p-2 rounded-full hover:text-gray-500 cursor-pointer">•••</summary>
+      <div class="absolute right-0 mt-2 w-30 bg-white border border-gray-200 rounded-md shadow-lg z-10 px-4 py-3 flex flex-col gap-1.5">
+        <%= button_to "Delete", [comment.post, comment], method: :delete, class:"cursor-pointer text-red-700" %>
+      </div>
+    </details>
   <% end %>
 </div>
