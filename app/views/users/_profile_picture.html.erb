@@ -5,10 +5,5 @@ size:
   'medium'(300*300) 
 -->
 
-<div>
-  <% if user.profile_picture.present? %>
-    <%= image_tag user.profile_picture&.variant(size.to_sym), class: size %>
-  <% else %>
-    <%= image_tag('stock_profile_picture.svg', class: size) %>
-  <% end %>
-</div>
+<% dp_url = user.profile_picture.present? ? user.profile_picture&.variant(size.to_sym) : 'stock_profile_picture.svg' %>
+<%= image_tag dp_url, class: "#{size} border-1 border-gray-300 rounded-full object-cover" %>

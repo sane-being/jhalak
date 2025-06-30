@@ -1,10 +1,13 @@
-<div id="<%= dom_id post %>"> 
+<div id="<%= dom_id post %>" class="flex flex-col gap-4" >
   <% if post.images.present? %>
     <% post.images.each do |image| %>
       <%= image_tag image %>
     <% end %>
   <% end %>
-
+  <div class="flex items-center gap-3">
+    <%= render "likes/like_button", post: post %>
+    <%= link_to "Liked by:", post_likes_path(post) %>
+  </div>
   <p>
     <strong>Content:</strong>
     <%= post.content %>
