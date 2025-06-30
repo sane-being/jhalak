@@ -10,7 +10,7 @@
   <% end %>
   <div class="flex items-center gap-3">
     <%= render "likes/like_button", post: post %>
-    <%= link_to "Liked by:", post_likes_path(post) %>
+    <%= link_to "#{post.likes.count} likes", post_likes_path(post), class:"font-bold" %>
   </div>
   <p>
     <strong><%= post.user.username %></strong>

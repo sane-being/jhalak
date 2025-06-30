@@ -1,9 +1,9 @@
 <div>
   <% if like(post).nil? %>
     <%= form_with(model: Like.new, url: post_likes_path(post)) do |form| %>
-      <%= form.submit "Like" %>
+      <%= form.submit "Like", class:"cursor-pointer inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center transition-all ease-in disabled:opacity-50 disabled:cursor-not-allowed text-sm py-2 px-4 bg-transparent relative text-stone-700 hover:text-stone-700 border-stone-500 hover:bg-transparent duration-150 hover:border-stone-600 rounded-full hover:opacity-60" %>
     <% end %>
   <% else %>
-    <%= button_to "Liked", [post, like(post)], method: :delete %>
+    <%= button_to "Liked", [post, like(post)], method: :delete, class:"cursor-pointer inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center duration-300 ease-in disabled:opacity-50 disabled:cursor-not-allowed text-sm py-2 px-4 bg-stone-800 hover:bg-stone-700 border-stone-900 text-stone-50 rounded-full transition antialiased" %>
   <% end %>
 </div>
