@@ -86,7 +86,8 @@ production:
     <<: *default
     database: jhalak_production
     username: jhalak
-    password: <%= ENV["JHALAK_DATABASE_PASSWORD"] %>
+    # password: <%= ENV["JHALAK_DATABASE_PASSWORD"] %>
+    url: <%= ENV['DATABASE_URL'] %>
   cache:
     <<: *primary_production
     database: jhalak_production_cache
