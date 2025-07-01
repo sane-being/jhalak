@@ -10,7 +10,7 @@
           <%= render "follow_requests/follow_button", user: @user %>
         <% end %>
       </div>
-      <div class="flex grow gap-8 h-fit">
+      <div class="flex gap-8 h-fit">
         <%= link_to @user, class:"flex gap-1" do %>
           <div class="font-bold"><%= @user.posts.count %></div>
           posts
@@ -29,7 +29,7 @@
           <%= @user.bio %>
         </div>
         <div>
-          <%= link_to "#{@user.website}", "https://www."+@user.website, target: "_blank", rel: "noopener" %>
+          <%= link_to(@user.website, target: "_blank", rel: "noopener") if @user.website.present? %>
         </div>
       </div>
     </div>
