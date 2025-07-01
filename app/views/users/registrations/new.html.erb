@@ -1,34 +1,31 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autocomplete: "username" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+<div class="flex flex-col gap-8 justify-center grow items-center w-full">
+  <h2 class="font-bold text-xl">Sign up</h2>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "users/shared/error_messages", resource: resource %>
+    <div class="flex flex-col w-full gap-4 border-b-1 border-gray-300 pb-4">
+      <div class="field flex flex-col">
+        <%= f.label :email, class:"font-bold" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"account-input" %>
+      </div>
+      <div class="field flex flex-col">
+        <%= f.label :username, class:"font-bold" %><br />
+        <%= f.text_field :username, autocomplete: "username", class:"account-input" %>
+      </div>
+      <div class="field flex flex-col">
+        <%= f.label :password, class:"font-bold" %>
+        <% if @minimum_password_length %>
+          <em class="text-gray-500 text-sm">(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class:"account-input" %>
+      </div>
+      <div class="field flex flex-col">
+        <%= f.label :password_confirmation, class:"font-bold" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"account-input" %>
+      </div>
+      <div class="actions self-center my-4">
+        <%= f.submit "Sign up", class:"account-button normal-button" %>
+      </div>
+    </div>
+  <% end %>
+  <%= render "users/shared/links" %>
+</div>
