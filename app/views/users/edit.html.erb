@@ -1,11 +1,42 @@
-<% content_for :title, "Editing user" %>
-
-<h1>Editing user</h1>
-
-<%= render "form", user: @user %>
-
-<br>
-
-<div>
-  <%= link_to "Show this user", @user %>
+<% content_for :title, "Edit profile" %>
+<div class="flex flex-col gap-8 justify-center grow items-center w-full">
+  <h2 class="font-bold text-xl">Edit profile</h2>
+  <div class="flex flex-col items-center gap-1">
+    <%= render "profile_picture", size: "small", user: @user %>
+    <div class="font-bold text-lg"><%= @user.username %></div>
+  </div>
+  <%= form_with(model: @user) do |form| %>
+    <div class="flex flex-col w-full gap-4 border-b-1 border-gray-300 pb-4">
+      <% if @user.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+          <ul>
+            <% @user.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="field flex flex-col">
+        <%= form.label :profile_picture, class:"font-bold" %>
+        <%= form.file_field :profile_picture, class:"account-button normal-button" %>
+      </div>
+      <div class="field flex flex-col">
+        <%= form.label :bio, class:"font-bold" %>
+        <%= form.text_field :bio, class:"account-input" %>
+      </div>
+      <div class="field flex flex-col">
+        <%= form.label :website, class:"font-bold" %>
+        <%= form.text_field :website, class:"account-input" %>
+      </div>
+      <div class="field flex flex-col">
+        <%= form.label :username, class:"font-bold" %>
+        <%= form.text_field :username, class:"account-input" %>
+      </div>
+      <div class="actions self-center my-4">
+        <%= form.submit "Save", class:"account-button normal-button" %>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to "Show profile", @user %>
 </div>
