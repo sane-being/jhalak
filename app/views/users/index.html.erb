@@ -1,13 +1,13 @@
 <% content_for :title, "Users" %>
-
-<h1>Users</h1>
-
-<div id="users">
-  <ul>
+<div id="users" class="flex flex-col gap-4 pt-16">
+  <h1 class="font-bold text-lg">Suggested</h1>
+  <ul class="flex flex-col gap-4">
     <% @users.each do |user| %>
-      <li>
-        <%= render "profile_picture", size: 'thumb', user: user %>
-        <h3><%= link_to user.username, user %></h3>
+      <li class="flex items-center gap-3 grow justify-center">
+        <div class="flex items-center gap-3 grow">
+          <%= render "users/profile_picture", size: 'thumb', user: user %>
+          <%= link_to user.username, user, class:"font-bold" %>
+        </div>
         <%= render "follow_requests/follow_button", user: user %>
       </li>
     <% end %>
