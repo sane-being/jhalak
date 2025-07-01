@@ -21,11 +21,12 @@
   <% end %>
   <div class="flex items-center gap-3">
     <%= render "likes/like_button", post: post %>
-    <%= link_to "#{post.likes.count} likes", post_likes_path(post), class:"font-bold" %>
+    <%= link_to("#{post.likes.count} likes", post_likes_path(post), class:"font-bold") if post.likes.count > 0 %>
   </div>
   <p>
     <strong><%= post.user.username %></strong>
     <%= post.content %>
   </p>
+  <%= link_to("View all #{post.comments.count} comments", post, class:"") if (post.comments.count > 0)&&(action_name.to_s != "show") %>
   <%= render "comments/new_comment", post: post %>
 </div>
