@@ -1,5 +1,4 @@
 <% content_for :title, "Followers" %>
-
 <div id="followers" class="flex flex-col gap-4 pt-16">
   <h1 class="font-bold text-lg">Followers</h1>
   <% @accepted_follow_requests.each do |follow_request| %>
@@ -9,7 +8,11 @@
         <%= link_to follow_request.follower.username, follow_request.follower, class:"font-bold" %>
       </div>
       <div class="flex flex-row items-center gap-1">
-        <%= render "follow_requests/follow_button", user: follow_request.follower %>
+        <% if follow_request.user == current_user %>
+          <%= button_to "Remove", follow_request, method: :delete, class:"cursor-pointer bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800" %>
+        <% else %>
+          <%= render "follow_requests/follow_button", user: follow_request.follower %>
+        <% end %>
       </div>
     </div>
   <% end %>
