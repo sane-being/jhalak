@@ -4,10 +4,7 @@
   <h1 class="font-bold text-lg">Follow requests</h1>
   <% @follow_requests.each do |follow_request| %>
     <div class="flex items-center gap-3 grow justify-center">
-      <div class="flex items-center gap-3 grow">
-        <%= render "users/profile_picture", size: 'thumb', user: follow_request.follower %>
-        <%= link_to follow_request.follower.username, follow_request.follower, class:"font-bold" %>
-      </div>
+      <%= render "users/user", user: follow_request.follower %>
       <div class="flex flex-row items-center gap-1">
         <%= render "accept_request_button", follow_request: follow_request %>
       </div>

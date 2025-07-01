@@ -1,5 +1,4 @@
-<div id="<%= dom_id user %>">  
-  <h3>
-    <%= link_to user.username, user %>
-  </h3>
+<div id="<%= dom_id user %>" class="flex items-center gap-3 grow">
+  <%= render "users/profile_picture", size: 'thumb', user: user %>
+  <%= link_to user.username, user, class:"font-bold" %>
 </div>

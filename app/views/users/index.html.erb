@@ -4,10 +4,7 @@
   <ul class="flex flex-col gap-4">
     <% @users.each do |user| %>
       <li class="flex items-center gap-3 grow justify-center">
-        <div class="flex items-center gap-3 grow">
-          <%= render "users/profile_picture", size: 'thumb', user: user %>
-          <%= link_to user.username, user, class:"font-bold" %>
-        </div>
+        <%= render "user", user: user %>
         <%= render "follow_requests/follow_button", user: user %>
       </li>
     <% end %>

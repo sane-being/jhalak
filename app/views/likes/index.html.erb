@@ -1,17 +1,13 @@
-
 <% content_for :title, "Likes" %>
 
-<h3>Post <%= @post.id %></h3>
-<%= render "posts/post", post: @post %>
-
-<h1>Likes</h1>
-
-<div id="likes">
-  <ul>
-    <% @likes.each do |like| %>
-      <li>
-        <%= link_to like.user.username, like.user %>
-      </li>
-    <% end %>
-  </ul>
+<div id="likes" class="flex flex-col gap-4 pt-16">
+  <h1 class="font-bold text-lg">Likes</h1>
+  <% @post.likes.each do |like| %>
+    <div class="flex items-center gap-3 grow justify-center">
+      <%= render "users/user", user: like.user %>
+      <div class="flex flex-row items-center gap-1">
+        <%= render "follow_requests/follow_button", user: like.user %>
+      </div>
+    </div>
+  <% end %>
 </div>
