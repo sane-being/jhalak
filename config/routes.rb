@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: "users/registrations"
   }
-  resources :users, only: [ :index, :show, :edit, :update ]
+  resources :users, only: [ :index, :show, :edit, :update ] do
+    get "followers", to: "users#followers_index", as: :followers
+    get "following", to: "users#following_index", as: :following
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

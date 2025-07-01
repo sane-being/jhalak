@@ -5,6 +5,14 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
+  def followers_index?
+    true
+  end
+
+  def following_index?
+    true
+  end
+
   def show?
     true
   end

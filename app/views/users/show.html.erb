@@ -30,6 +30,11 @@
   <%= @user.bio %>
 </p>
 
+<div>
+  <%= link_to "Followers", user_followers_path(@user) %>
+  <%= link_to "Following", user_following_path(@user) %>
+</div>
+
 <h2>Posts</h2>
 
 <div id="posts">

@@ -1,14 +1,9 @@
 <% unless follow_request.accepted && allowed_to?(:update?, follow_request) %>
-  <div>
-    <%= form_with(model: follow_request) do |form| %>
-      <%= form.hidden_field :accepted, value: true %>
-      <%= form.submit "Confirm" %>
-    <% end %>
-  </div>
+  <%= form_with(model: follow_request) do |form| %>
+    <%= form.hidden_field :accepted, value: true %>
+    <%= form.submit "Confirm", class:"cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
+  <% end %>
 <% end %>
-
 <% if allowed_to?(:destroy?, follow_request) %>
-  <div>
-    <%= button_to (follow_request.accepted ? "Remove" : "Delete" ), follow_request, method: :delete %>
-  </div>
+  <%= button_to (follow_request.accepted ? "Remove" : "Delete" ), follow_request, method: :delete, class:"cursor-pointer bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800" %>
 <% end %>
