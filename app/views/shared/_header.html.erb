@@ -1,28 +1,26 @@
-
 <% if user_signed_in? %>
-  <header class="w-3xs h-screen border-r-1 border-x-gray-300 px-4 fixed">
+  <header class="w-72 h-screen border-r-1 border-x-gray-300 px-4 fixed">
     <%= link_to image_tag('instagram-wordmark.svg', class: "header-logo max-w-1/2 py-8 cursor-pointer"), root_path %>
     <div class="grid gap-2">
-      
-      <%= link_to root_path, class:"p-2 text-base font-medium rounded-lg hover:bg-gray-100"  do %>
+      <%= link_to root_path, class:"p-3 text-base font-medium text-lg rounded-lg hover:bg-gray-100"  do %>
         Home (Posts)
       <% end %>
-      <%= link_to new_post_path, class:"p-2 text-base font-medium rounded-lg hover:bg-gray-100" do %>
+      <%= link_to new_post_path, class:"p-3 text-base font-medium text-lg rounded-lg hover:bg-gray-100" do %>
         New post
       <% end %>
-      <%= link_to users_path, class:"p-2 text-base font-medium rounded-lg hover:bg-gray-100" do %>
+      <%= link_to users_path, class:"p-3 text-base font-medium text-lg rounded-lg hover:bg-gray-100" do %>
         Users
       <% end %>
-      <%= link_to follow_requests_path, class:"p-2 text-base font-medium rounded-lg hover:bg-gray-100" do %>
+      <%= link_to follow_requests_path, class:"p-3 text-base font-medium text-lg rounded-lg hover:bg-gray-100" do %>
         Follow Requests
       <% end %>
-      <%= link_to user_path(current_user), class:"p-2 text-base font-medium rounded-lg hover:bg-gray-100" do %>
+      <%= link_to user_path(current_user), class:"p-3 text-base font-medium text-lg rounded-lg hover:bg-gray-100" do %>
         Profile
       <% end %>
-      <%= link_to edit_user_registration_path, class:"p-2 text-base font-medium rounded-lg hover:bg-gray-100" do %>
+      <%= link_to edit_user_registration_path, class:"p-3 text-base font-medium text-lg rounded-lg hover:bg-gray-100" do %>
         Account Settings
       <% end %>
-      <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "p-2 text-base font-medium rounded-lg hover:bg-gray-100 w-full text-left cursor-pointer" %>
+      <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "p-3 text-base font-medium text-lg rounded-lg hover:bg-gray-100 w-full text-left cursor-pointer" %>
     </div>
   </header>
 <% else %>
@@ -30,4 +28,3 @@
   <div><%= link_to "Sign in", new_user_session_path %></div>
   <div><%= link_to "Sign up", new_user_registration_path %></div>
 <% end %>
-
