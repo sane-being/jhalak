@@ -1,6 +1,6 @@
 <div class="flex flex-col gap-8 justify-center grow items-center w-full">
   <h2 class="font-bold text-xl">Sign up</h2>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>
     <div class="flex flex-col w-full gap-4 border-b-1 border-gray-300 pb-4">
       <div class="field flex flex-col">
